@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+
+
+Comente os códigos informando o significado sintático de cada linha e o significado semântico do algoritmo. Nos casos em
+que o tipo da função não apresente a Arrow Function faça os ajustes.
+
+Algoritmo 1
+const tamanho = prompt('Digite o tamanho da lista de números');
+const lista = new Array(tamanho).fill(null);
+lista
+.map(function (item, index) {
+return index + 1;
+})
+.reduce(function (acumulador, item) {
+return acumulador * item;
+});
+
+
+new Array(tamanho)
+.fill(null)
+.map((item, index) => index + 1)
+.reduce((acumulador, item) => acumulador + item);
+
+Algoritmo 2
+const letras = [
+['a', 'b', 'c'],
+['c', 'd', 'f'],
+['d', 'f', 'g'],
+];
+
+
+let resultado = letras.flat().reduce((objeto, numero) => {
+if (objeto[numero]) {
+objeto[numero] += 1;
+} else {
+objeto[numero] = 1;
+}
+return objeto;
+}, {});
+
+
+
+Algoritmo 3
+const estudantes = [
+{ nome: 'Alice', notas: [100, 60, 92] },
+{ nome: 'João', notas: [75, 30, 85] },
+{ nome: 'Charles', notas: [90, 95, 85] },
+{ nome: 'Paulo', notas: [100, 100, 100] },
+];
+
+
+const estudantesMedias = estudantes.map((estudante) => {
+const total = estudante.notas.reduce((soma, nota) => soma + nota);
+let {nome} = estudante;
+return { nome, media: total / estudante.notas.length };
+});
+
+
+const melhoresMedias = estudantesMedias.filter(
+(student) => student.media > 90,
+);
+
+
+Algoritmo 4
+const funcionarios = [
+{ nome: 'João', salario: 30000, departamento: 'TI' },
+{ nome: 'Janete', salario: 70000, departamento: 'RH' },
+{ nome: 'Sofia', salario: 100000, departamento: 'RH' },
+];
+const funcionariosPorDepartamento = funcionarios.reduce(
+(acumulador, funcionario) => {
+const departamento = funcionario.departamento;
+if (!acumulador[departamento]) {
+acumulador[departamento] = [];
+}
+acumulador[departamento].push(funcionario);
+return acumulador;
+},
+{},
+);
+const mediasSalarioPorDepartamento = Object.keys(
+funcionariosPorDepartamento,
+).map((departamento) => {
+const total = funcionariosPorDepartamento[departamento].reduce(
+(acumulador, funcionario) => acumulador + funcionario.salario,
+0,
+);
+return {
+departamento: departamento,
+media: total / funcionariosPorDepartamento[departamento].length,
+};
+});
+
+
+const maioresPagamentos = mediasSalarioPorDepartamento.filter(
+(departamento) => departamento.media > 65000,
+);
+
+
+Implemente os algoritmos solicitados utilizando as técnicas de iteração, filtragem e redução previstas no Javascript.
+Algoritmo 5: Some os valores das listas a = [1, 2, 3, 4, 5], b = [6, 7, 8, 9, 10].
+Algoritmo 6: Construa uma string que representa uma estrutura em HTML que seja capaz de listar de forma ordenada os
+itens = ["Guarabira", "Belém", "Sapé"].
